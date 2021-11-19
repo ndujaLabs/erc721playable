@@ -6,18 +6,34 @@ const Helpers = {
     this.ethers = ethers
   },
 
-  async assertThrowsMessage(promise, message, showError) {
+  async assertThrowsMessage(promise, message) {
     try {
       await promise
+      console.log('It did not throw :-(')
       assert.isTrue(false)
-      console.error('This did not throw: ', message)
     } catch (e) {
-      if (showError) {
-        console.error('Expected: ', message)
-        console.error(e.message)
+      const shouldBeTrue = e.message.indexOf(message) > -1
+      if (!shouldBeTrue) {
+        console.error('Expected:', message)
+        console.error('Returned:', e.message)
+        // console.log(e)
       }
-      assert.isTrue(e.message.indexOf(message) > -1)
+      assert.isTrue(shouldBeTrue)
     }
+  },
+
+  async deployContractBy(contractName, owner, ...args) {
+    const Contract = await this.ethers.getContractFactory(contractName)
+    const contract = await Contract.connect(owner).deploy(...args)
+    await contract.deployed()
+    return contract
+  },
+
+  async deployContract(contractName, ...args) {
+    const Contract = await this.ethers.getContractFactory(contractName)
+    const contract = await Contract.deploy(...args)
+    await contract.deployed()
+    return contract
   },
 
   async signPackedData(

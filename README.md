@@ -117,6 +117,10 @@ The on-chain Metadata must be used only for important informations, like, for ex
 This is totally compatible with the ERC721 standard, except for the interfaceId.
 
 
+## License
+
+MIT
+
 ## Copyright
 
-Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
+(c) 2021 [Francesco Sullo](https://francesco.sullo.co) & [Nduja Labs](https://ndujalabs.com)

@@ -1,6 +1,4 @@
 require("@nomiclabs/hardhat-waffle");
-require("@nomiclabs/hardhat-etherscan");
-// require("hardhat-gas-reporter");
 
 let env = require('./env.json');
 
@@ -36,54 +34,7 @@ module.exports = {
     },
     localhost: {
       url: "http://localhost:8545"
-    },
-    ganache: {
-      url: "http://localhost:7545"
-    },
-    rinkeby: {
-      url: `https://rinkeby.infura.io/v3/${env.infuraApiKey}`,
-      accounts: [env.privateKey]
-    },
-    goerli: {
-      url: `https://goerli.infura.io/v3/${env.infuraApiKey}`,
-      accounts: [env.privateKey]
-    },
-    ethereum: {
-      url: `https://mainnet.infura.io/v3/${env.infuraApiKey}`,
-      accounts: [env.privateKey]
-    },
-    bsc_testnet: {
-      url: "https://data-seed-prebsc-1-s1.binance.org:8545",
-      chainId: 97,
-      gasPrice: 20000000000,
-      accounts: [env.privateKey]
-    },
-    bsc: {
-      url: "https://bsc-dataseed.binance.org/",
-      chainId: 56,
-      gasPrice: 20000000000,
-      accounts: [env.privateKey]
-    },
-    mumbai: {
-      url: "https://rpc-mumbai.matic.today/",
-      chainId: 80001,
-      gasPrice: 20000000000,
-      accounts: [env.privateKey]
-    },
-    matic: {
-      url: `https://rpc-mainnet.maticvigil.com/v1/${env.maticvigilKey}`,
-      chainId: 137,
-      gasPrice: 20000000000,
-      accounts: [env.privateKey]
-    },
-  },
-  etherscan: {
-    apiKey: env.etherscanKey
-    // apiKey: env.bscscanKey
-  },
-  gasReporter: {
-    currency: 'USD',
-    coinmarketcap: env.coinMarketCapAPIKey
+    }
   }
 };
 

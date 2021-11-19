@@ -5,6 +5,8 @@ pragma solidity ^0.8.0;
 // Francesco Sullo <francesco@sullo.co>
 // 'ndujaLabs, https://ndujalabs.com
 
+//import "hardhat/console.sol";
+
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "./IERC721Playable.sol";
 
@@ -34,10 +36,7 @@ contract ERC721Playable is IERC721Playable, ERC721 {
     return arr;
   }
 
-  function initAttributes(
-    uint256 _tokenId,
-    address _player
-  ) external override returns (bool) {
+  function initAttributes(uint256 _tokenId, address _player) external override returns (bool) {
     // called by the nft's owner
     require(_exists(_tokenId), "ERC721Playable: token not found");
     require(ownerOf(_tokenId) == _msgSender(), "ERC721Playable: not the token owner");
@@ -56,7 +55,7 @@ contract ERC721Playable is IERC721Playable, ERC721 {
     require(_exists(_tokenId), "ERC721Playable: tokenId not found");
     require(_indexes.length == _values.length, "ERC721Playable: inconsistent lengths");
     require(_attributes[_tokenId][_msgSender()].version > 0, "ERC721Playable: player not initialized");
-    if (_newVersion != 0) {
+    if (_newVersion != 0 && _newVersion != _attributes[_tokenId][_msgSender()].version) {
       _attributes[_tokenId][_msgSender()].version = _newVersion;
     }
     for (uint256 i = 0; i < _indexes.length; i++) {

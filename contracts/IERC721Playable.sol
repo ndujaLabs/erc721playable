@@ -13,7 +13,6 @@ import "@openzeppelin/contracts/utils/introspection/IERC165.sol";
 /// @title IERC721Playable Cross-player On-chain Attributes
 ///  Version: 0.1.0
 interface IERC721Playable is IERC165 {
-
   /// @dev Emitted when the attributes for a token id and a player is set.
   event AttributesSet(uint256 indexed _tokenId, address indexed _player, Attributes _attributes);
 
@@ -24,7 +23,6 @@ interface IERC721Playable is IERC165 {
     // Alternatively, we could use the first attribute as a version, but it
     // would use the same space, making the concept less clear
     uint8 version;
-
     // Attributes can be immutable (for example because taken from the attributes.json)
     // or mutable, because they depends only on the player itself.
     // If a field requires more than 256 possible value, two bytes can be used for it.
@@ -45,10 +43,7 @@ interface IERC721Playable is IERC165 {
   /// @param _tokenId The id of the token for whom to change the attributes
   /// @param _player The version of the attributes
   /// @return true if the initialization is successful
-  function initAttributes(
-    uint256 _tokenId,
-    address _player
-  ) external returns (bool);
+  function initAttributes(uint256 _tokenId, address _player) external returns (bool);
 
   /// @notice Sets the attributes of a token after first set up
   /// @dev It modifies attributes by id for a specific player. It must

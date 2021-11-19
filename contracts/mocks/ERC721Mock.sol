@@ -14,11 +14,7 @@ contract ERC721Mock is ERC721Playable, ERC721Enumerable, Ownable {
   address public player;
   uint256 private _nextTokenId = 1;
 
-  string private _baseTokenURI;
-
-  constructor(string memory _uri) ERC721Playable("Some NFT", "SNFT") {
-    _baseTokenURI = _uri;
-  }
+  constructor() ERC721Playable("Some NFT", "SNFT") {}
 
   function _beforeTokenTransfer(
     address _from,
@@ -29,16 +25,12 @@ contract ERC721Mock is ERC721Playable, ERC721Enumerable, Ownable {
   }
 
   function supportsInterface(bytes4 interfaceId) public view override(ERC721Playable, ERC721Enumerable) returns (bool) {
-    return interfaceId == type(IERC721Playable).interfaceId || super.supportsInterface(interfaceId);
+    return super.supportsInterface(interfaceId);
   }
 
   function mint(address recipient, uint256 quantity) external onlyOwner {
     for (uint256 i = 0; i < quantity; i++) {
       _mint(recipient, _nextTokenId++);
     }
-  }
-
-  function _baseURI() internal view virtual override returns (string memory) {
-    return _baseTokenURI;
   }
 }
