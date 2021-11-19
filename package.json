@@ -1,19 +1,17 @@
 {
-  "name": "ERC721Playable",
+  "name": "erc721playable",
   "version": "0.1.0",
   "description": "",
   "files": [
-    "/contracts/**/*.sol",
-    "/build/contracts/*.json",
-    "!/contracts/mocks/**/*"
+    "/contracts/**/*.sol"
   ],
   "scripts": {
     "test": "npx hardhat test",
     "compile": "npx hardhat compile",
     "lint": "prettier --write 'contracts/**/*.sol' && solhint 'contracts/**/*.sol'"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Francesco Sullo <francesco@sullo.co>",
+  "license": "MIT",
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.2",
     "@nomiclabs/hardhat-etherscan": "^2.1.1",

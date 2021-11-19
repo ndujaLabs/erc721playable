@@ -112,6 +112,14 @@ On the other hand, if the Player initializes the token, spam will florish. For e
 
 The on-chain Metadata must be used only for important informations, like, for example, level ups. If used for frequent changing values, too many changes will congestionate the blockchain.
 
+## Interaction with NFT marketplaces
+
+A game just need to be able to set attributes in the NFT to manage it. Marketplace, however, need more information to show their users the attributes in a way that makes sense and helps users to value a token.  It is unrealistic to expect that a marketplace understands what an attribute is used for in any game in the crypto metaverse. 
+
+The solution is an interface that any game can implement to expose a map that shows what any attribute is for.
+
+We will cover this in a future proposal.
+
 ## Backwards Compatibility
 
 This is totally compatible with the ERC721 standard, except for the interfaceId.
