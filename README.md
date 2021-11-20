@@ -2,6 +2,8 @@
 
 Discussion at https://github.com/ndujaLabs/MCIPs/issues/3
 
+Author: Francesco Sullo <francesco@sullo.co>
+
 ## Simple Summary
 
 A standard protocol to allow playes, for example games, to use NFTs storing data on the NFT itself.
@@ -24,7 +26,7 @@ The standard ERC721 works very well for collectibles, despite being introduced b
 
 to manage mutable and immutable properties of a dragon. The limit of this model is that the properties were predefined and a different game could not reuse the same approach.
 
-We need a generic solution that establish basic rules and is flexible enough to manage most scenarios and make NFT really movable among games.
+Projects like [EverDragons2](https://everdragons2.com), which does not have a ready game right now, need a generic solution that establish basic rules and is flexible enough to manage most scenarios and make NFT really movable among games. The same rules can be helpful in any other game, as well as in any platform that can take advantage for managing an array of values in the NFT.
 
 ## Specification
 
