@@ -6,7 +6,7 @@ Author: Francesco Sullo <francesco@sullo.co>
 
 ## Simple Summary
 
-A standard protocol to allow playes, for example games, to use NFTs storing data on the NFT itself.
+A standard protocol to allow playes, for example games, to use NFTs storing data on the NFT itself, implementing the [MCIP-1 proposal](https://github.com/ndujaLabs/MCIPs/blob/main/MCIPs/mcip-1.md)
 
 
 ## Motivation
@@ -124,7 +124,10 @@ We will cover this in a future proposal.
 
 ## Backwards Compatibility
 
-This is totally compatible with the ERC721 standard, except for the interfaceId.
+This is totally compatible with the ERC721 standard, except for the interfaceId. For this reason, it could be better to expose a different way to verify if a contract is MCIP1-compatible, something like
+```solidity 
+function isMCIP1() external view returns (bool);
+```
 
 
 ## License
