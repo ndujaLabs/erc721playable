@@ -120,7 +120,11 @@ A game just need to be able to set attributes in the NFT to manage it. Marketpla
 
 The solution is an interface that any game can implement to expose a map that shows what any attribute is for.
 
-We will cover this in a future proposal.
+We will cover this in a future proposal, but the idea is to expose a function like
+```solidity
+function attributesURI(uint8 _version) external returns(string memory);
+```
+which should return a JSON file allowing the marketplace to interpretate any attribute for a specific version, and return the full set of information if the passed version is `0`.
 
 ## Backwards Compatibility
 
