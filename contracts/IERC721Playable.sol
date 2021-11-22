@@ -4,7 +4,7 @@ pragma solidity ^0.8.0;
 // Initial proposal
 // https://github.com/ndujaLabs/MCIPs/blob/main/MCIPs/mcip-1.md
 
-import "@openzeppelin/contracts/utils/introspection/IERC165.sol";
+//import "@openzeppelin/contracts/utils/introspection/IERC165.sol";
 
 // Authors:
 // Francesco Sullo <francesco@sullo.co>
@@ -12,7 +12,8 @@ import "@openzeppelin/contracts/utils/introspection/IERC165.sol";
 
 /// @title IERC721Playable Cross-player On-chain Attributes
 ///  Version: 0.1.0
-interface IERC721Playable is IERC165 {
+/// We do not extend IERC165, for now, to avoid conflicts
+interface IERC721Playable /* is IERC165 */ {
   /// @dev Emitted when the attributes for a token id and a player is set.
   event AttributesSet(uint256 indexed _tokenId, address indexed _player, Attributes _attributes);
 

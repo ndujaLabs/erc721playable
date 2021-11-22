@@ -6,7 +6,9 @@ Author: Francesco Sullo <francesco@sullo.co>
 
 ## Simple Summary
 
-A standard protocol to allow playes, for example games, to use NFTs storing data on the NFT itself, implementing the [MCIP-1 proposal](https://github.com/ndujaLabs/MCIPs/blob/main/MCIPs/mcip-1.md)
+A proposal to extend the ERC721 standard with a struct and a few functions to allow players, for example games, to use NFTs storing data on the NFT itself.
+
+This repo implements the [MCIP-1 proposal](https://github.com/ndujaLabs/MCIPs/blob/main/MCIPs/mcip-1.md) mantaining full compatibility with the ERC721 standard.
 
 
 ## Motivation
@@ -39,7 +41,7 @@ pragma solidity ^0.8.0;
 
 /// @title IERC721Playable Cross-player On-chain Attributes
 ///  Version: 0.1.0
-interface IERC721Playable /* is IERC165 */ {
+interface IERC721Playable {
 
   /// @dev Emitted when the attributes for a token id and a player is set.
   event AttributesSet(uint256 indexed _tokenId, address indexed _player, Attributes _attributes);
@@ -92,6 +94,13 @@ interface IERC721Playable /* is IERC165 */ {
     uint256[] memory _indexes,
     uint8[] memory _attributes
   ) external returns (bool);
+
+  /// @dev Tells other contracts if the NFT is compatible with this standard
+  /// We could have extended the ERC165 and expose and interfaceId but that 
+  /// could create issues to every marketplace that would not recognize 
+  /// the contract as an ERC721
+  function isMCIP1() external returns(bool);
+  
 }
 
 ```
@@ -128,10 +137,9 @@ which should return a JSON file allowing the marketplace to interpretate any att
 
 ## Backwards Compatibility
 
-This is totally compatible with the ERC721 standard, except for the interfaceId. For this reason, it could be better to expose a different way to verify if a contract is MCIP1-compatible, something like
-```solidity 
-function isMCIP1() external view returns (bool);
-```
+This is totally compatible with the ERC721 standard.
+
+_It would be better to extend ERC165 and expose a specific interfaceId, but it could create issues to marketplaces who expect a set of interfaceId from ERC721 contracts and could not support this one._ 
 
 ## Implementation
 

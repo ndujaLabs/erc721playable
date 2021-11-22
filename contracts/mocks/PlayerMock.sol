@@ -16,7 +16,7 @@ interface NFTPlayable is IERC721Playable {
 contract PlayerMock is Ownable {
 
   function isTokenInitialized(NFTPlayable _nft, uint256 _tokenId) public view returns (bool) {
-    require(_nft.supportsInterface(type(NFTPlayable).interfaceId), "not a playable NFT");
+//    require(_nft.supportsInterface(type(NFTPlayable).interfaceId), "not a playable NFT");
     return _nft.attributesOf(_tokenId, address(this)).version > 0;
   }
 
