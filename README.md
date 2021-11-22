@@ -133,6 +133,9 @@ This is totally compatible with the ERC721 standard, except for the interfaceId.
 function isMCIP1() external view returns (bool);
 ```
 
+## Implementation
+
+This repo implements a full working contract at https://github.com/ndujaLabs/erc721playable/blob/main/contracts/ERC721Playable.sol
 
 ## License
 
