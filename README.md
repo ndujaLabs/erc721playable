@@ -145,6 +145,20 @@ _It would be better to extend ERC165 and expose a specific interfaceId, but it c
 
 This repo implements a full working contract at https://github.com/ndujaLabs/erc721playable/blob/main/contracts/ERC721Playable.sol
 
+## Install an usage
+
+Install with
+```
+npm install @ndujalabs/erc721playable
+```
+and use as
+```solidity
+import "@ndujalabs/erc721playable/contracts/ERC721Playable.sol";
+
+contract YourNFT is ERC721Playable {
+   ...
+```
+
 ## License
 
 MIT
