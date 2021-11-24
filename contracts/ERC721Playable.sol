@@ -63,4 +63,8 @@ contract ERC721Playable is IERC721Playable, ERC721 {
     }
     return true;
   }
+
+  function isMCIP1() external pure override returns(bool) {
+    return true;
+  }
 }

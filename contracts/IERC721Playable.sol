@@ -61,4 +61,10 @@ interface IERC721Playable /* is IERC165 */ {
     uint256[] memory _indexes,
     uint8[] memory _attributes
   ) external returns (bool);
+
+  /// @dev Tells other contracts if the NFT is compatible with this standard
+  /// We could have extended the ERC165 and expose and interfaceId but that
+  /// could create issues to every marketplace that would not recognize
+  /// the contract as an ERC721
+  function isMCIP1() external pure returns(bool);
 }

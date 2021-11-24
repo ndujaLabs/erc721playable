@@ -4,6 +4,7 @@ const {deployContract} = require('./helpers')
 describe("ERC721Playable", function () {
 
   let erc721Mock
+  let erc721NotPlayableMock
   let playerMock
 
   let owner, holder
@@ -14,6 +15,7 @@ describe("ERC721Playable", function () {
 
   beforeEach(async function () {
     erc721Mock = await deployContract('ERC721Mock')
+    erc721NotPlayableMock = await deployContract('ERC721NotPlayableMock')
     playerMock = await deployContract('PlayerMock')
   })
 
@@ -71,7 +73,11 @@ describe("ERC721Playable", function () {
 
   })
 
-  // TODO: add throwing exceptions
+  it("should check if nft is playable", async function () {
 
+    assert.isTrue(await playerMock.isNFTPlayable(erc721Mock.address))
+    assert.isFalse(await playerMock.isNFTPlayable(erc721NotPlayableMock.address))
+
+  })
 
 })

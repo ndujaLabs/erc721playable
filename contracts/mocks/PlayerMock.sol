@@ -16,7 +16,7 @@ interface NFTPlayable is IERC721Playable {
 contract PlayerMock is Ownable {
 
   function isTokenInitialized(NFTPlayable _nft, uint256 _tokenId) public view returns (bool) {
-//    require(_nft.supportsInterface(type(NFTPlayable).interfaceId), "not a playable NFT");
+    //    require(_nft.supportsInterface(type(NFTPlayable).interfaceId), "not a playable NFT");
     return _nft.attributesOf(_tokenId, address(this)).version > 0;
   }
 
@@ -48,5 +48,17 @@ contract PlayerMock is Ownable {
     uint8[] memory attributes = new uint8[](1);
     attributes[0] = _newLevel;
     nft.updateAttributes(_tokenId, 0, indexes, attributes);
+  }
+
+  function isNFTPlayable(address addr) public view returns (bool) {
+    IERC721Playable nft = IERC721Playable(addr);
+    try nft.isMCIP1() returns (bool yes) {
+      if (yes) {
+        return true;
+      }
+    } catch Error(string memory) {
+    } catch (bytes memory) {
+    }
+    return false;
   }
 }
