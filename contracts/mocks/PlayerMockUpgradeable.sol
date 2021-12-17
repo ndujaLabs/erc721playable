@@ -11,21 +11,16 @@ import "../ERC721PlayableUpgradeable.sol";
 
 import "hardhat/console.sol";
 
-contract PlayerMockUpgradeable is Initializable,  OwnableUpgradeable, UUPSUpgradeable {
-
+contract PlayerMockUpgradeable is Initializable, OwnableUpgradeable, UUPSUpgradeable {
   /// @custom:oz-upgrades-unsafe-allow constructor
   constructor() initializer {}
 
-  function initialize() initializer public {
+  function initialize() public initializer {
     __Ownable_init();
     __UUPSUpgradeable_init();
   }
 
-  function _authorizeUpgrade(address newImplementation)
-  internal
-  onlyOwner
-  override
-  {}
+  function _authorizeUpgrade(address newImplementation) internal override onlyOwner {}
 
   function isTokenInitialized(ERC721PlayableUpgradeable _nft, uint256 _tokenId) public view returns (bool) {
     require(isNFTPlayable(address(_nft)), "not a playable NFT");
