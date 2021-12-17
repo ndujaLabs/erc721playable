@@ -1,7 +1,7 @@
 const {expect, assert} = require("chai")
-const {deployContract} = require('./helpers')
+const {deployContract, deployContractUpgradeable} = require('./helpers')
 
-describe("ERC721Playable", function () {
+describe("ERC721PlayableUpgradeable", function () {
 
   let erc721Mock
   let erc721NotPlayableMock
@@ -14,13 +14,14 @@ describe("ERC721Playable", function () {
   })
 
   beforeEach(async function () {
-    erc721Mock = await deployContract('ERC721Mock')
-    erc721NotPlayableMock = await deployContract('ERC721NotPlayableMock')
-    playerMock = await deployContract('PlayerMock')
+    erc721Mock = await deployContractUpgradeable('ERC721MockUpgradeable')
+    erc721NotPlayableMock = await deployContractUpgradeable('ERC721NotPlayableMockUpgradeable')
+    playerMock = await deployContractUpgradeable('PlayerMockUpgradeable')
   })
 
   it("should mint token and verify that the player is not initiated", async function () {
-    await erc721Mock.mint(holder.address, 1)
+
+    await erc721Mock.connect(owner).mint(holder.address, 1)
     expect(await erc721Mock.ownerOf(1)).to.equal(holder.address)
 
     const attributes = await erc721Mock.attributesOf(holder.address, playerMock.address)

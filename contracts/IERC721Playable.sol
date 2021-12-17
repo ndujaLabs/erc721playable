@@ -1,18 +1,16 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.3;
 
 // Initial proposal
 // https://github.com/ndujaLabs/MCIPs/blob/main/MCIPs/mcip-1.md
-
-//import "@openzeppelin/contracts/utils/introspection/IERC165.sol";
 
 // Authors:
 // Francesco Sullo <francesco@sullo.co>
 // 'ndujaLabs, https://ndujalabs.com
 
 /// @title IERC721Playable Cross-player On-chain Attributes
-///  Version: 0.1.0
-/// We do not extend IERC165, for now, to avoid conflicts
+///  Version: 0.1.1
+/// ERC165 interfaceId is 0xac517b2e
 interface IERC721Playable /* is IERC165 */ {
   /// @dev Emitted when the attributes for a token id and a player is set.
   event AttributesSet(uint256 indexed _tokenId, address indexed _player, Attributes _attributes);
@@ -62,9 +60,4 @@ interface IERC721Playable /* is IERC165 */ {
     uint8[] memory _attributes
   ) external returns (bool);
 
-  /// @dev Tells other contracts if the NFT is compatible with this standard
-  /// We could have extended the ERC165 and expose and interfaceId but that
-  /// could create issues to every marketplace that would not recognize
-  /// the contract as an ERC721
-  function isMCIP1() external pure returns(bool);
 }
