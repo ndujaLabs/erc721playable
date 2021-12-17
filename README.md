@@ -94,7 +94,6 @@ interface IERC721Playable {
     uint256[] memory _indexes,
     uint8[] memory _attributes
   ) external returns (bool);
-  ~~~~
 }
 
 ```
