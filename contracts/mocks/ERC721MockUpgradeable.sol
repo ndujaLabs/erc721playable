@@ -12,7 +12,13 @@ import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 
 import "../ERC721PlayableUpgradeable.sol";
 
-contract ERC721MockUpgradeable is Initializable, ERC721PlayableUpgradeable, ERC721EnumerableUpgradeable, OwnableUpgradeable, UUPSUpgradeable {
+contract ERC721MockUpgradeable is
+  Initializable,
+  ERC721PlayableUpgradeable,
+  ERC721EnumerableUpgradeable,
+  OwnableUpgradeable,
+  UUPSUpgradeable
+{
   using AddressUpgradeable for address;
   address public player;
   uint256 private _nextTokenId;
@@ -20,18 +26,14 @@ contract ERC721MockUpgradeable is Initializable, ERC721PlayableUpgradeable, ERC7
   /// @custom:oz-upgrades-unsafe-allow constructor
   constructor() initializer {}
 
-  function initialize() initializer public {
+  function initialize() public initializer {
     __ERC721Playable_init("Some NFT", "SNFT");
     __Ownable_init();
     __UUPSUpgradeable_init();
     _nextTokenId = 1;
   }
 
-  function _authorizeUpgrade(address newImplementation)
-  internal
-  onlyOwner
-  override
-  {}
+  function _authorizeUpgrade(address newImplementation) internal override onlyOwner {}
 
   function _beforeTokenTransfer(
     address _from,
@@ -41,7 +43,12 @@ contract ERC721MockUpgradeable is Initializable, ERC721PlayableUpgradeable, ERC7
     super._beforeTokenTransfer(_from, _to, _tokenId);
   }
 
-  function supportsInterface(bytes4 interfaceId) public view override(ERC721PlayableUpgradeable, ERC721EnumerableUpgradeable) returns (bool) {
+  function supportsInterface(bytes4 interfaceId)
+    public
+    view
+    override(ERC721PlayableUpgradeable, ERC721EnumerableUpgradeable)
+    returns (bool)
+  {
     return super.supportsInterface(interfaceId);
   }
 

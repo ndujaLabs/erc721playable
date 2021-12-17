@@ -23,9 +23,9 @@ contract ERC721Playable is IERC721Playable, ERC721 {
     super._beforeTokenTransfer(_from, _to, _tokenId);
   }
 
-//  function getInterfaceId() external view returns(bytes4) {
-//    return type(IERC721Playable).interfaceId;
-//  }
+  //  function getInterfaceId() external view returns(bytes4) {
+  //    return type(IERC721Playable).interfaceId;
+  //  }
 
   function supportsInterface(bytes4 interfaceId) public view virtual override(ERC721) returns (bool) {
     return interfaceId == type(IERC721Playable).interfaceId || super.supportsInterface(interfaceId);
@@ -67,5 +67,4 @@ contract ERC721Playable is IERC721Playable, ERC721 {
     }
     return true;
   }
-
 }

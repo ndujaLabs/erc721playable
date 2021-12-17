@@ -8,7 +8,6 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 
 contract ERC721NotPlayableMock is ERC721, Ownable {
-
   constructor() ERC721("Some Not Playable NFT", "SNPNFT") {}
 
   function _beforeTokenTransfer(
@@ -22,5 +21,4 @@ contract ERC721NotPlayableMock is ERC721, Ownable {
   function supportsInterface(bytes4 interfaceId) public view override(ERC721) returns (bool) {
     return super.supportsInterface(interfaceId);
   }
-
 }

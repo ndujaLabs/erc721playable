@@ -12,7 +12,6 @@ import "../ERC721Playable.sol";
 import "hardhat/console.sol";
 
 contract PlayerMock is Ownable {
-
   function isTokenInitialized(ERC721Playable _nft, uint256 _tokenId) public view returns (bool) {
     require(isNFTPlayable(address(_nft)), "not a playable NFT");
     return _nft.attributesOf(_tokenId, address(this)).version > 0;
