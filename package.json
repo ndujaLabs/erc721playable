@@ -29,6 +29,8 @@
     "solhint": "^3.3.6"
   },
   "dependencies": {
+    "@openzeppelin/contracts-upgradeable": "^4.4.1",
+    "@openzeppelin/hardhat-upgrades": "^1.12.0",
     "@poanet/solidity-flattener": "^3.0.6",
     "ipfs-http-client": "^49.0.4"
   }

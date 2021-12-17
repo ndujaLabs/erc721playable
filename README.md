@@ -94,13 +94,7 @@ interface IERC721Playable {
     uint256[] memory _indexes,
     uint8[] memory _attributes
   ) external returns (bool);
-
-  /// @dev Tells other contracts if the NFT is compatible with this standard
-  /// We could have extended the ERC165 and expose and interfaceId but that 
-  /// could create issues to every marketplace that would not recognize 
-  /// the contract as an ERC721
-  function isMCIP1() external returns(bool);
-  
+  ~~~~
 }
 
 ```
@@ -138,8 +132,6 @@ which should return a JSON file allowing the marketplace to interpretate any att
 ## Backwards Compatibility
 
 This is totally compatible with the ERC721 standard.
-
-_It would be better to extend ERC165 and expose a specific interfaceId, but it could create issues to marketplaces who expect a set of interfaceId from ERC721 contracts and could not support this one._ 
 
 ## Implementation
 

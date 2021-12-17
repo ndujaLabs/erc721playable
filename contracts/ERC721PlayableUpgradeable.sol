@@ -5,29 +5,27 @@ pragma solidity ^0.8.3;
 // Francesco Sullo <francesco@sullo.co>
 // 'ndujaLabs, https://ndujalabs.com
 
-import "hardhat/console.sol";
+//import "hardhat/console.sol";
 
-import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol";
 import "./IERC721Playable.sol";
 
-contract ERC721Playable is IERC721Playable, ERC721 {
+contract ERC721PlayableUpgradeable is IERC721Playable, ERC721Upgradeable {
   mapping(uint256 => mapping(address => Attributes)) internal _attributes;
 
-  constructor(string memory name, string memory symbol) ERC721(name, symbol) {}
+  function __ERC721Playable_init(string memory name_, string memory symbol_) internal initializer {
+    __ERC721_init(name_, symbol_);
+  }
 
   function _beforeTokenTransfer(
     address _from,
     address _to,
     uint256 _tokenId
-  ) internal virtual override(ERC721) {
+  ) internal virtual override(ERC721Upgradeable) {
     super._beforeTokenTransfer(_from, _to, _tokenId);
   }
 
-//  function getInterfaceId() external view returns(bytes4) {
-//    return type(IERC721Playable).interfaceId;
-//  }
-
-  function supportsInterface(bytes4 interfaceId) public view virtual override(ERC721) returns (bool) {
+  function supportsInterface(bytes4 interfaceId) public view virtual override(ERC721Upgradeable) returns (bool) {
     return interfaceId == type(IERC721Playable).interfaceId || super.supportsInterface(interfaceId);
   }
 
@@ -67,5 +65,4 @@ contract ERC721Playable is IERC721Playable, ERC721 {
     }
     return true;
   }
-
 }
