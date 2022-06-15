@@ -117,6 +117,26 @@ On the other hand, if the Player initializes the token, spam will florish. For e
 
 The on-chain Metadata must be used only for important informations, like, for example, level ups. If used for frequent changing values, too many changes will congestionate the blockchain.
 
+## Numbers larger than uint8
+
+As long as 31 bytes are enough, numbers can be spread on the array. For example, a `uint16` can be transformed in 2 `uint8` with a code like this:
+
+```solidity
+uint16 value = 24354;
+uint8 v0 = uint8(value & 0xff);
+uint8 v1 = uint8(value >> 8);
+
+console.log(uint(v0)); // 34
+console.log(uint(v1)); // 95
+
+```
+and re-converted with
+```solidity
+uint16 value2 = uint16(v1) << 8 | v0;
+
+console.log(uint(value2)); // 24354
+```
+
 ## Interaction with NFT marketplaces
 
 A game just need to be able to set attributes in the NFT to manage it. Marketplace, however, need more information to show their users the attributes in a way that makes sense and helps users to value a token.  It is unrealistic to expect that a marketplace understands what an attribute is used for in any game in the crypto metaverse.
@@ -142,10 +162,10 @@ This repo implements a full working contract at https://github.com/ndujaLabs/erc
 In some cases, a player, for example a game, wants to set the initial configuration of the token and be sure that a token is ready for the game. In this case, the best moment to do it is during the minting. For example, with a function like this:
 
 ```solidity
-  function mintAndInit(address to, uint256 tokenId, address player, Attributes memory initialAttributes) public override onlyMinter {
-    _attributes[tokenId][player] = Attributes({version: 1, attributes: initialAttributes.attributes});
-    safeMint(to, tokenId);
-  }
+function mintAndInit(address to, uint256 tokenId, address player, Attributes memory initialAttributes) public override onlyMinter {
+_attributes[tokenId][player] = Attributes({version: 1, attributes: initialAttributes.attributes});
+safeMint(to, tokenId);
+}
 
 ```
 That is possible because the variable `attributes` is `internal`. Ideally, it should be `private`, but since this proposal is not a standard yet, being `internal` gives the dev some flexibility.
