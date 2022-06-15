@@ -59,7 +59,7 @@ contract ERC721Playable is IERC721Playable, ERC721 {
     require(_exists(_tokenId), "ERC721Playable: tokenId not found");
     require(_indexes.length == _values.length, "ERC721Playable: inconsistent lengths");
     require(_attributes[_tokenId][_msgSender()].version > 0, "ERC721Playable: player not initialized");
-    if (_newVersion != 0 && _newVersion != _attributes[_tokenId][_msgSender()].version) {
+    if (_newVersion > _attributes[_tokenId][_msgSender()].version) {
       _attributes[_tokenId][_msgSender()].version = _newVersion;
     }
     for (uint256 i = 0; i < _indexes.length; i++) {
