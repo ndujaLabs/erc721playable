@@ -187,8 +187,8 @@ function initAttributesAndSafeMint(
   _attributes[_tokenId][_player] = Attributes({version: 1, attributes: _initialAttributes});
   _safeMint(_to, _tokenId);
 }
-
 ```
+Notice that the function is public because it can be called internally, for example, if the actuall mint function uses a progressive tokenId.
 ## Install an usage
 
 Install with
