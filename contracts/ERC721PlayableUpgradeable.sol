@@ -16,6 +16,7 @@ contract ERC721PlayableUpgradeable is IERC721Playable, ERC721Upgradeable {
 
   mapping(uint256 => mapping(address => Attributes)) internal _attributes;
 
+  // solhint-disable-next-line
   function __ERC721Playable_init(string memory name_, string memory symbol_) internal initializer {
     __ERC721_init(name_, symbol_);
   }
@@ -79,5 +80,4 @@ contract ERC721PlayableUpgradeable is IERC721Playable, ERC721Upgradeable {
     _attributes[_tokenId][_player] = Attributes({version: 1, attributes: _initialAttributes});
     _safeMint(_to, _tokenId);
   }
-
 }

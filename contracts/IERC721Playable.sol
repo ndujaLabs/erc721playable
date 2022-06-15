@@ -11,7 +11,8 @@ pragma solidity ^0.8.0;
 /// @title IERC721Playable Cross-player On-chain Attributes
 ///  Version: 0.1.1
 /// ERC165 interfaceId is 0xac517b2e
-interface IERC721Playable /* is IERC165 */ {
+/* is IERC165 */
+interface IERC721Playable {
   /// @dev Emitted when the attributes for a token id and a player is set.
   event AttributesSet(uint256 indexed _tokenId, address indexed _player, Attributes _attributes);
 
