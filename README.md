@@ -159,17 +159,36 @@ This repo implements a full working contract at https://github.com/ndujaLabs/erc
 
 ## Initial configuration
 
-In some cases, a player, for example a game, wants to set the initial configuration of the token and be sure that a token is ready for the game. In this case, the best moment to do it is during the minting. For example, with a function like this:
-
+In the folders `/extensions` there are initializable versions of the standard.  
+Basically, they include the function `initAttributesAndSafeMint` defined as
 ```solidity
-function mintAndInit(address to, uint256 tokenId, address player, Attributes memory initialAttributes) public override onlyMinter {
-_attributes[tokenId][player] = Attributes({version: 1, attributes: initialAttributes.attributes});
-safeMint(to, tokenId);
-}
-
+/// @notice Initialize the initial attributes of a token during the minting
+/// @dev It must be called by the contract's owner.
+/// @param _to The recipient of the token
+/// @param _tokenId The id of the token for whom to change the attributes
+/// @param _player The pre-configured player
+/// @param _initialAttributes The initial attributes
+function initAttributesAndSafeMint(
+  address _to,
+  uint256 _tokenId,
+  address _player,
+  uint8[31] calldata _initialAttributes
+) external;
 ```
-That is possible because the variable `attributes` is `internal`. Ideally, it should be `private`, but since this proposal is not a standard yet, being `internal` gives the dev some flexibility.
-
+and implemented as
+```solidity
+function initAttributesAndSafeMint(
+  address _to,
+  uint256 _tokenId,
+  address _player,
+  uint8[31] calldata _initialAttributes
+) public override virtual onlyOwner {
+  require(_player.isContract(), "ERC721PlayableInitializable: player not a contract");
+  _attributes[_tokenId][_player] = Attributes({version: 1, attributes: _initialAttributes});
+  _safeMint(_to, _tokenId);
+}
+```
+Notice that the function is public because it can be called internally, for example, if the actuall mint function uses a progressive tokenId.
 ## Install an usage
 
 Install with

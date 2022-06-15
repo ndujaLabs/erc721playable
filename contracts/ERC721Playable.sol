@@ -8,9 +8,12 @@ pragma solidity ^0.8.0;
 import "hardhat/console.sol";
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts/utils/Address.sol";
+
 import "./IERC721Playable.sol";
 
 contract ERC721Playable is IERC721Playable, ERC721 {
+  using Address for address;
   mapping(uint256 => mapping(address => Attributes)) internal _attributes;
 
   constructor(string memory name, string memory symbol) ERC721(name, symbol) {}
@@ -42,9 +45,9 @@ contract ERC721Playable is IERC721Playable, ERC721 {
 
   function initAttributes(uint256 _tokenId, address _player) external override returns (bool) {
     // called by the nft's owner
-    require(_exists(_tokenId), "ERC721Playable: token not found");
+    require(_player.isContract(), "ERC721Playable: _player not a contract");
     require(ownerOf(_tokenId) == _msgSender(), "ERC721Playable: not the token owner");
-    require(_attributes[_tokenId][_msgSender()].version == 0, "ERC721Playable: player already initialized");
+    require(_attributes[_tokenId][_player].version == 0, "ERC721Playable: player already initialized");
     _attributes[_tokenId][_player] = Attributes({version: 1, attributes: _emptyAttributesArray()});
     return true;
   }
@@ -56,7 +59,6 @@ contract ERC721Playable is IERC721Playable, ERC721 {
     uint8[] memory _values
   ) public override returns (bool) {
     // called by a previously initiated player
-    require(_exists(_tokenId), "ERC721Playable: tokenId not found");
     require(_indexes.length == _values.length, "ERC721Playable: inconsistent lengths");
     require(_attributes[_tokenId][_msgSender()].version > 0, "ERC721Playable: player not initialized");
     if (_newVersion > _attributes[_tokenId][_msgSender()].version) {
