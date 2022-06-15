@@ -28,6 +28,17 @@ describe("ERC721Playable", function () {
 
   })
 
+  it("should mint and pre-initialize ", async function () {
+    await erc721Mock.mintAndInit(holder.address, playerMock.address,
+        [1, 5, 34, 21, 8, 0, 34, 12, 31, 65, 178, 243, 2, 1, 5, 34, 21, 8, 0, 34, 12, 31, 65, 178, 243, 2, 1, 5, 34, 21, 8]);
+
+    expect(await erc721Mock.ownerOf(1)).to.equal(holder.address)
+    //
+    const attributes = await erc721Mock.attributesOf(1, playerMock.address)
+    expect(attributes.version).to.equal(1)
+    expect(attributes.attributes[3]).to.equal(21)
+  })
+
   it("should allow token holder to set a player", async function () {
 
     await erc721Mock.mint(holder.address, 1)

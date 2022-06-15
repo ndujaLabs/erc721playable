@@ -33,4 +33,9 @@ contract ERC721Mock is ERC721Playable, ERC721Enumerable, Ownable {
       _mint(recipient, _nextTokenId++);
     }
   }
+
+  function mintAndInit(address recipient, address _player,
+    uint8[31] calldata _initialAttributes) external onlyOwner {
+      _initAttributesAndSafeMint(recipient, _nextTokenId++, _player, _initialAttributes);
+  }
 }

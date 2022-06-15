@@ -159,36 +159,8 @@ This repo implements a full working contract at https://github.com/ndujaLabs/erc
 
 ## Initial configuration
 
-In the folders `/extensions` there are initializable versions of the standard.  
-Basically, they include the function `initAttributesAndSafeMint` defined as
-```solidity
-/// @notice Initialize the initial attributes of a token during the minting
-/// @dev It must be called by the contract's owner.
-/// @param _to The recipient of the token
-/// @param _tokenId The id of the token for whom to change the attributes
-/// @param _player The pre-configured player
-/// @param _initialAttributes The initial attributes
-function initAttributesAndSafeMint(
-  address _to,
-  uint256 _tokenId,
-  address _player,
-  uint8[31] calldata _initialAttributes
-) external;
-```
-and implemented as
-```solidity
-function initAttributesAndSafeMint(
-  address _to,
-  uint256 _tokenId,
-  address _player,
-  uint8[31] calldata _initialAttributes
-) public override virtual onlyOwner {
-  require(_player.isContract(), "ERC721PlayableInitializable: player not a contract");
-  _attributes[_tokenId][_player] = Attributes({version: 1, attributes: _initialAttributes});
-  _safeMint(_to, _tokenId);
-}
-```
-Notice that the function is public because it can be called internally, for example, if the actuall mint function uses a progressive tokenId.
+In the implementation there is the internal function `_initAttributesAndSafeMint` which mints a token and set its attributes. It can be used to mint pre-configured tokens.
+
 ## Install an usage
 
 Install with

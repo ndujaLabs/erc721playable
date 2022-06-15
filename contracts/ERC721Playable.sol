@@ -69,4 +69,16 @@ contract ERC721Playable is IERC721Playable, ERC721 {
     }
     return true;
   }
+
+  // this internal function can be called by the mint function to pre-initialize a token
+  function _initAttributesAndSafeMint(
+    address _to,
+    uint256 _tokenId,
+    address _player,
+    uint8[31] calldata _initialAttributes
+  ) internal {
+    require(_player.isContract(), "ERC721PlayableUpgradeable: player not a contract");
+    _attributes[_tokenId][_player] = Attributes({version: 1, attributes: _initialAttributes});
+    _safeMint(_to, _tokenId);
+  }
 }
