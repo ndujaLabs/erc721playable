@@ -17,13 +17,13 @@ The standard ERC721 works very well for collectibles, despite being introduced b
 
 ```solidity
     struct Dragon {
-        bytes32 name;
-        uint24 attributes;
-        uint32 experience;
-        uint32 prestige;
-        uint16 state;
-        mapping(bytes32 => uint32) items;
-    }
+  bytes32 name;
+  uint24 attributes;
+  uint32 experience;
+  uint32 prestige;
+  uint16 state;
+  mapping(bytes32 => uint32) items;
+}
 ```
 
 to manage mutable and immutable properties of a dragon. The limit of this model is that the properties were predefined and a different game could not reuse the same approach.
@@ -111,7 +111,7 @@ Of course, to work as expected, OpenSea and other marketplace should have a list
 
 If NFT owners are allowed to update the attributes of their tokens, they could set whichever value the want, so the only the Player must be able to update the attributes. It is important that the owner cannot revoke the approval because if not, owners could play a game and, when they realized they are decreasing their score, before that the game updates the attributes, they revoke the approval.
 
-On the other hand, if the Player initializes the token, spam will florish. For example, a bad game could initialize tokens pretending that their owner played the game. Think of a porn game that sets your NFT and pretends that you have high scores. That can be a problem, right? The solution is that the Owner only can initialize the attribute for a specific game. 
+On the other hand, if the Player initializes the token, spam will florish. For example, a bad game could initialize tokens pretending that their owner played the game. Think of a porn game that sets your NFT and pretends that you have high scores. That can be a problem, right? The solution is that the Owner only can initialize the attribute for a specific game.
 
 ## Recommendation
 
@@ -119,7 +119,7 @@ The on-chain Metadata must be used only for important informations, like, for ex
 
 ## Interaction with NFT marketplaces
 
-A game just need to be able to set attributes in the NFT to manage it. Marketplace, however, need more information to show their users the attributes in a way that makes sense and helps users to value a token.  It is unrealistic to expect that a marketplace understands what an attribute is used for in any game in the crypto metaverse. 
+A game just need to be able to set attributes in the NFT to manage it. Marketplace, however, need more information to show their users the attributes in a way that makes sense and helps users to value a token.  It is unrealistic to expect that a marketplace understands what an attribute is used for in any game in the crypto metaverse.
 
 The solution is an interface that any game can implement to expose a map that shows what any attribute is for.
 
@@ -137,6 +137,18 @@ This is totally compatible with the ERC721 standard.
 
 This repo implements a full working contract at https://github.com/ndujaLabs/erc721playable/blob/main/contracts/ERC721Playable.sol
 
+## Initial configuration
+
+In some cases, a player, for example a game, wants to set the initial configuration of the token and be sure that a token is ready for the game. In this case, the best moment to do it is during the minting. For example, with a function like this:
+
+```solidity
+  function mintAndInit(address to, uint256 tokenId, address player, Attributes memory initialAttributes) public override onlyMinter {
+    _attributes[tokenId][player] = Attributes({version: 1, attributes: initialAttributes.attributes});
+    safeMint(to, tokenId);
+  }
+
+```
+
 ## Install an usage
 
 Install with
@@ -148,7 +160,7 @@ and use as
 import "@ndujalabs/erc721playable/contracts/ERC721Playable.sol";
 
 contract YourNFT is ERC721Playable {
-   ...
+...
 ```
 
 ## License
