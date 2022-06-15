@@ -16,7 +16,7 @@ This repo implements the [MCIP-1 proposal](https://github.com/ndujaLabs/MCIPs/bl
 The standard ERC721 works very well for collectibles, despite being introduced by a game. Decentralized player, for example games, need attributes and other information on chain to be able to play with it. For example, the [original EverDragons factory](https://github.com/mscherer82/everdragons/blob/master/everdragons-contract/contracts/EverDragonsFactory.sol) was implementing the following
 
 ```solidity
-    struct Dragon {
+struct Dragon {
   bytes32 name;
   uint24 attributes;
   uint32 experience;
@@ -148,6 +148,7 @@ In some cases, a player, for example a game, wants to set the initial configurat
   }
 
 ```
+That is possible because the variable `attributes` is `internal`. Ideally, it should be `private`, but since this proposal is not a standard yet, being `internal` gives the dev some flexibility.
 
 ## Install an usage
 
