@@ -23,7 +23,7 @@ describe("ERC721Playable", function () {
     await erc721Mock.mint(holder.address, 1)
     expect(await erc721Mock.ownerOf(1)).to.equal(holder.address)
 
-    const attributes = await erc721Mock.attributesOf(holder.address, playerMock.address)
+    const attributes = await erc721Mock.attributesOf(1, playerMock.address)
     expect(attributes.version).to.equal(0)
 
   })

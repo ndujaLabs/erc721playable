@@ -9,7 +9,7 @@ import "@openzeppelin/contracts/utils/introspection/IERC165.sol";
 
 import "../ERC721Playable.sol";
 
-import "hardhat/console.sol";
+//import "hardhat/console.sol";
 
 contract PlayerMock is Ownable {
   function isTokenInitialized(ERC721Playable _nft, uint256 _tokenId) public view returns (bool) {

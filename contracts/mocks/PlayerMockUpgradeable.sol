@@ -9,7 +9,7 @@ import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 import "../ERC721PlayableUpgradeable.sol";
 
-import "hardhat/console.sol";
+//import "hardhat/console.sol";
 
 contract PlayerMockUpgradeable is Initializable, OwnableUpgradeable, UUPSUpgradeable {
   /// @custom:oz-upgrades-unsafe-allow constructor
