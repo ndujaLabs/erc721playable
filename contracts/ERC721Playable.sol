@@ -75,7 +75,7 @@ contract ERC721Playable is IERC721Playable, ERC721 {
     address _to,
     uint256 _tokenId,
     address _player,
-    uint8[31] calldata _initialAttributes
+    uint8[31] memory _initialAttributes
   ) internal {
     require(_player.isContract(), "ERC721PlayableUpgradeable: player not a contract");
     _attributes[_tokenId][_player] = Attributes({version: 1, attributes: _initialAttributes});
