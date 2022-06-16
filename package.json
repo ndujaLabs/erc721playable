@@ -11,7 +11,8 @@
   "scripts": {
     "test": "npx hardhat test",
     "compile": "npx hardhat compile",
-    "lint": "prettier --write 'contracts/**/*.sol' && solhint 'contracts/**/*.sol'"
+    "lint": "prettier --write 'contracts/**/*.sol' && solhint 'contracts/**/*.sol'",
+    "format": "npx prettier --write 'test/**/*.js'"
   },
   "author": "Francesco Sullo <francesco@sullo.co>",
   "license": "MIT",

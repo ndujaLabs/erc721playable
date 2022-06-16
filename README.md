@@ -119,23 +119,7 @@ The on-chain Metadata must be used only for important informations, like, for ex
 
 ## Numbers larger than uint8
 
-As long as 31 bytes are enough, numbers can be spread on the array. For example, a `uint16` can be transformed in 2 `uint8` with a code like this:
-
-```solidity
-uint16 value = 24354;
-uint8 v0 = uint8(value & 0xff);
-uint8 v1 = uint8(value >> 8);
-
-console.log(uint(v0)); // 34
-console.log(uint(v1)); // 95
-
-```
-and re-converted with
-```solidity
-uint16 value2 = uint16(v1) << 8 | v0;
-
-console.log(uint(value2)); // 24354
-```
+As long as 31 bytes are enough, numbers can be spread on the array. For that you can use the library `Uint8Lib` in the `libraries` folder. It manages convert between uint8, uint16, uint32 and uint64. If you need to manage number larger than uint64, most likely an array of uint8 is not your solution.
 
 ## Interaction with NFT marketplaces
 
