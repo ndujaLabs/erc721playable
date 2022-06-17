@@ -8,23 +8,23 @@ pragma solidity ^0.8.0;
 // you need something else than a uint8[31] array
 
 library Uint8Lib {
-  function uint16ToUint8s(uint16 value) public view returns (uint8[2] memory) {
+  function uint16ToUint8s(uint16 value) public pure returns (uint8[2] memory) {
     return [uint8(value & 0xff), uint8(value >> 8)];
   }
 
-  function uint8ToUint16(uint8[2] calldata values) public view returns (uint16) {
+  function uint8ToUint16(uint8[2] calldata values) public pure returns (uint16) {
     return (uint16(values[1]) << 8) | values[0];
   }
 
-  function uint32ToUint8s(uint32 value) public view returns (uint8[4] memory) {
+  function uint32ToUint8s(uint32 value) public pure returns (uint8[4] memory) {
     return [uint8(value & 0x000000ff), uint8(value >> 8), uint8(value >> 16), uint8(value >> 24)];
   }
 
-  function uint8ToUint32(uint8[4] memory values) public view returns (uint32) {
+  function uint8ToUint32(uint8[4] memory values) public pure returns (uint32) {
     return (uint32(values[3]) << 24) | (uint32(values[2]) << 16) | (uint32(values[1]) << 8) | values[0];
   }
 
-  function uint64ToUint8s(uint64 value) public view returns (uint8[8] memory) {
+  function uint64ToUint8s(uint64 value) public pure returns (uint8[8] memory) {
     return [
       uint8(value & 0x000000ff),
       uint8(value >> 8),
@@ -37,7 +37,7 @@ library Uint8Lib {
     ];
   }
 
-  function uint8ToUint64(uint8[8] memory values) public view returns (uint64) {
+  function uint8ToUint64(uint8[8] memory values) public pure returns (uint64) {
     return
       (uint64(values[7]) << 56) |
       (uint64(values[6]) << 48) |
