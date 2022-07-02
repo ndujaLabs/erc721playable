@@ -1,5 +1,7 @@
 # Cross-player on-chain NFT attributes
 
+#### NOTICE: this proposal has been abandoned after trying to use it in a couple of projects because in almost every scenario uint8 values are not enough for what it is needed and when working with conversions, the cost to save the changes becomes higher because of the calculation compared with using custom struct in the contract. This kills the advantage coming for using a common structure amongst games.
+
 Discussion at https://github.com/ndujaLabs/MCIPs/issues/3
 
 Author: Francesco Sullo <francesco@sullo.co>
@@ -115,11 +117,13 @@ On the other hand, if the Player initializes the token, spam will florish. For e
 
 ## Recommendation
 
-The on-chain Metadata must be used only for important informations, like, for example, level ups. If used for frequent changing values, too many changes will congestionate the blockchain.
+The on-chain Metadata must be used only for important informations, like, for example, level ups. If used for frequent changing values, too many changes will congest the blockchain.
 
 ## Numbers larger than uint8
 
-As long as 31 bytes are enough, numbers can be spread on the array. For that you can use the library `Uint8Lib` in the `libraries` folder. It manages convert between uint8, uint16, uint32 and uint64. If you need to manage number larger than uint64, most likely an array of uint8 is not your solution.
+As long as 31 bytes are enough, numbers can be spread on the array. For that you can use the library `Uint8Lib` in the `libraries` folder. It manages conversions between uint8, uint16, uint32 and uint64.
+
+But, this proposal works well only as long as the data to be saved are uint8 — which is what in theory we should do to save on chain the minimum possible. However, in the initial cases where this proposal was tested, it was necessary to save larger information. Then, it had become clear that the conversion consumes too much gas, making the usage of a `uint8[31]` in a struct not convenient.
 
 ## Interaction with NFT marketplaces
 

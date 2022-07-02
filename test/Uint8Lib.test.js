@@ -12,7 +12,7 @@ describe("Uint8Lib", function () {
     uint8LibMock = await deployContract("Uint8Lib");
   });
 
-  it.only("should convert properly among uint8 and uint16 and uint32", async function () {
+  it("should convert properly among uint8 and uint16 and uint32", async function () {
     let uint8LibMock = await deployContract("Uint8Lib");
 
     let value = 24354;
