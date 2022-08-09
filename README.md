@@ -1,6 +1,8 @@
 # Cross-player on-chain NFT attributes
 
-#### NOTICE: this proposal has been abandoned after trying to use it in a couple of projects because in almost every scenario uint8 values are not enough for what it is needed and when working with conversions, the cost to save the changes becomes higher because of the calculation compared with using custom struct in the contract. This kills the advantage coming for using a common structure amongst games.
+### NOTICE: this proposal has been abandoned after trying to use it in a couple of projects because in almost every scenario uint8 values are not enough for what it is needed and when working with conversions, the cost to save the changes becomes higher because of the calculation compared with using custom struct in the contract. This kills the advantage coming for using a common structure amongst games.
+
+### A new proposal replacing this one can be found at https://github.com/ndujaLabs/attributable
 
 Discussion at https://github.com/ndujaLabs/MCIPs/issues/3
 
