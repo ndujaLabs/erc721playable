@@ -4,10 +4,6 @@
 
 ### A new proposal replacing this one can be found at https://github.com/ndujaLabs/attributable
 
-Discussion at https://github.com/ndujaLabs/MCIPs/issues/3
-
-Author: Francesco Sullo <francesco@sullo.co>
-
 ## Simple Summary
 
 A proposal to extend the ERC721 standard with a struct and a few functions to allow players, for example games, to use NFTs storing data on the NFT itself.
